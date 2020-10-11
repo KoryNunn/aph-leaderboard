@@ -28,6 +28,7 @@ function roundTo(value, places) {
 
 var ui = fastn('div', 
         fastn('h1', 'APH Petition live leaderboard'),
+        fastn('h2', 'Top 100 petitions right now.'),
         fastn('list', {
             items: binding('petitions|*.signersPerMinute', petitions => {
                 if(!petitions) {
@@ -36,7 +37,7 @@ var ui = fastn('div',
 
                 var sorted = Object.keys(petitions)
                     .map(petitionNumber => petitions[petitionNumber])
-                    .sort((a, b) => b.Signatures - a.Signatures)
+                    .sort((a, b) => b.SignatureCount - a.SignatureCount)
                     .sort((a, b) => roundTo(b.signersPerMinute, 2) - roundTo(a.signersPerMinute, 2))
 
                 console.log(sorted.slice(0, 10));
@@ -45,7 +46,7 @@ var ui = fastn('div',
             insertionFrameTime: 50,
             template: function(){
                 return fastn('div', { class: 'petition' },
-                    fastn('h2', fastn('a', {
+                    fastn('h3', fastn('a', {
                         href: binding('item.PetitionNumber', petitionNumber => 'https://www.aph.gov.au/petition_list?id=${petitionNumber}')
                     }, binding('item.PetitionTitle'))),
 

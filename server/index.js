@@ -50,20 +50,37 @@ async function fetchPetitions(){
     return allPetitions || allPetitionsCache.get('all');
 }
 
+function roundTo(value, places) {
+    return Math.round(value * Math.pow(10, places)) / Math.pow(10, places)
+}
+
 async function getPetitions(request, response, tokens) {
     if(!formattedPetitionsCache.has('all')){
-        formattedPetitionsCache.set('all', fetchPetitions().then(petitions => Object.keys(petitions).reduce((result, key) => {
-            result[key] = {
-                PPetitionerName: petitions[key].PPetitionerName,
-                PetitionNumber: petitions[key].PetitionNumber,
-                PetitionTitle: petitions[key].PetitionTitle,
-                SignatureCount: petitions[key].SignatureCount,
-                signersPerMinute: petitions[key].signersPerMinute,
-                _lastUpdated: petitions[key]._lastUpdated
-            };
+        formattedPetitionsCache.set('all', fetchPetitions()
+            .then(petitions => 
+                Object.keys(petitions)
+                .map((petitionNumber) => {
+                    var petition = petitions[petitionNumber];
 
-            return result;
-        }, {})))
+                    return {
+                        PPetitionerName: petition.PPetitionerName,
+                        PetitionNumber: petition.PetitionNumber,
+                        PetitionTitle: petition.PetitionTitle,
+                        SignatureCount: petition.SignatureCount,
+                        signersPerMinute: petition.signersPerMinute,
+                        _lastUpdated: petition._lastUpdated
+                    };
+                })
+                .sort((a, b) => b.SignatureCount - a.SignatureCount)
+                .sort((a, b) => roundTo(b.signersPerMinute, 2) - roundTo(a.signersPerMinute, 2))
+                .slice(0, 100)
+                .reduce((result, petition) => {
+                    result[petition.PetitionNumber] = petition;
+
+                    return result;
+                }, {})
+            )
+        )
     }
 
     return formattedPetitionsCache.get('all');
