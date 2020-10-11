@@ -56,7 +56,7 @@ var ui = fastn('div',
                         ),
                         ' ',
                         fastn('span', 'Signatures per minute: ', 
-                            fastn('span', { class: ' value'}, binding('item.signersPerMinute', perMinute => perMinute ? perMinute.toFixed(2) : '...'))
+                            fastn('span', { class: ' value'}, binding('item.signersPerMinute', perMinute => !isNaN(perMinute) ? perMinute.toFixed(2) : '...'))
                         )
                     )
                 )
