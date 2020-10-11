@@ -47,7 +47,7 @@ var ui = fastn('div',
             template: function(){
                 return fastn('div', { class: 'petition' },
                     fastn('h3', fastn('a', {
-                        href: binding('item.PetitionNumber', petitionNumber => 'https://www.aph.gov.au/petition_list?id=${petitionNumber}')
+                        href: binding('item.PetitionNumber', petitionNumber => `https://www.aph.gov.au/petition_list?id=${petitionNumber}`)
                     }, binding('item.PetitionTitle'))),
 
                     fastn('p',
