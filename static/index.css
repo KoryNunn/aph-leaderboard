@@ -1,0 +1,25 @@
+body {
+    font-family: Arial;
+}
+
+.value {
+    font-weight: 600;
+    font-size: 1.2em;
+    transition: font 1s ease-out;
+}
+
+.petition:nth-child(1) .value {
+    font-size: 3em;
+}
+
+.petition:nth-child(2) .value {
+    font-size: 2em;
+}
+
+.petition:nth-child(3) .value {
+    font-size: 1.8em;
+}
+
+.petition:nth-child(4) .value {
+    font-size: 1.5em;
+}
