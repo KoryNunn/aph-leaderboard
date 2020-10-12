@@ -124,7 +124,9 @@ router.add({
     '/petitions/`petitionNumber`': respond(getPetition),
     '/`path...`': fileServer.serveDirectory('./static', {
         '.js': 'application/javascript',
-        '.css': 'text/css'
+        '.css': 'text/css',
+        '.svg': 'image/svg+xml',
+        '.gif': 'image/gif'
     })
 });
 
