@@ -11,7 +11,9 @@ function fetchPetitions() {
     .then(response => response.json())
     .then(petitions => {
         mutate.update(state, `petitions`, petitions);
-    })
+
+        setTimeout(fetchPetitions, 2000);
+    });
 }
 
 function fetchPetition(petitionNumber) {
@@ -138,5 +140,4 @@ window.addEventListener('DOMContentLoaded', function(){
     document.body.appendChild(ui.element);
 
     fetchPetitions();
-    setInterval(fetchPetitions, 4000);
 })
