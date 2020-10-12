@@ -8,7 +8,7 @@ var allPetitionsUrl = 'https://epetitions.aph.gov.au/petitions/all';
 var router = new SeaLion();
 var fileServer = new Dion(router);
 var allPetitionsCache = new LRU({
-    maxAge: 10000
+    maxAge: 4000
 });
 var allPetitions;
 var formattedPetitionsCache = new LRU({
