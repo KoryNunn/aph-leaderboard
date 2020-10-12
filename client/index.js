@@ -70,5 +70,5 @@ window.addEventListener('DOMContentLoaded', function(){
     document.body.appendChild(ui.element);
 
     fetchPetitions();
-    setInterval(fetchPetitions, 9000);
+    setInterval(fetchPetitions, 4000);
 })
