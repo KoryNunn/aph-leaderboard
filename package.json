@@ -15,7 +15,7 @@
   "dependencies": {
     "axios": "^0.20.0",
     "dion": "^2.0.0",
-    "enti": "^6.4.3",
+    "enti": "^6.4.4",
     "lru-cache": "^6.0.0",
     "sea-lion": "^2.0.2"
   },
