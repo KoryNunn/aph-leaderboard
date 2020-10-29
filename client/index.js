@@ -83,7 +83,6 @@ var ui = fastn('div',
                         .sort((a, b) => b.SignatureCount - a.SignatureCount)
                         .sort((a, b) => roundTo(b.signersPerMinute, 2) - roundTo(a.signersPerMinute, 2))
 
-                    console.log(sorted.slice(0, 10));
                     return sorted;
                 }),
                 insertionFrameTime: 50,

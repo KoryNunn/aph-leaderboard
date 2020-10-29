@@ -138,6 +138,7 @@ router.add({
     '/': fileServer.serveFile('./static/index.html', 'text/html'),
     '/petitions': respond(getPetitions),
     '/`path...`': fileServer.serveDirectory('./static', {
+        '.json': 'application/json',
         '.js': 'application/javascript',
         '.css': 'text/css',
         '.svg': 'image/svg+xml',
