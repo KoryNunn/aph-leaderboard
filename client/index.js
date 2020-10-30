@@ -37,7 +37,7 @@ function smoothBinding(frequency, ...args){
     });
 
     setInterval(function(){
-        var damper = (lastUpdateDuration / frequency);
+        var damper = Math.min(lastUpdateDuration / frequency, 100);
         lastEmittedValue = (lastEmittedValue * damper + currentValue) / (damper + 1);
         fakeBinding.emit('change', lastEmittedValue);
     }, frequency);
