@@ -50,7 +50,8 @@ function fetchPetitions() {
     .then(response => response.json())
     .then(petitions => {
         mutate.update(state, `petitions`, petitions);
-
+    })
+    .finally(() => {
         setTimeout(fetchPetitions, 2000);
     });
 }
