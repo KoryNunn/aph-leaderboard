@@ -31,7 +31,12 @@ section {
     justify-content: space-evenly;
     align-items: baseline;
 }
+
 .petition p{
+}
+
+.petition p > div{
+    flex: 100%;
 }
 
 .petition:nth-child(1) .value {
