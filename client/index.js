@@ -119,7 +119,7 @@ var ui = fastn('div',
 
                         fastn('p',
                             fastn('span', 'Deadline: ', 
-                                fastn('span', { class: 'value'}, binding('SignDeadline', value => new Date(value).toLocaleString()))
+                                fastn('span', { class: 'value'}, binding('item.SignDeadline', value => new Date(value).toLocaleString()))
                             ),
                             fastn('span', 'Signatures: ', 
                                 fastn('span', { class: 'value count'}, binding(smoothBinding(100, 'item.SignatureCount'), value => value.toFixed(0)))
