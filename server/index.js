@@ -7,7 +7,7 @@ var Dion = require('dion');
 var compression = require('compression');
 var compress = compression();
 
-var allPetitionsUrl = 'https://epetitions.aph.gov.au/petitions/all';
+var allPetitionsUrl = 'https://epetitions.aph.gov.au/api/petitions/open?pagesize=1000&pageindex=0&keywords=%20&sort=PetitionNumber&desc=true&type=All&from=&to=&status=1,2,3,4';
 var router = new SeaLion();
 var fileServer = new Dion(router);
 var cacheTime = 2000;
@@ -60,7 +60,7 @@ function inflatePetitionData(data, lastData){
 var lastData;
 var fetchPetitions = staleCache(cacheTime, function(callback){
     var petitionData = righto.from(axios({
-        url: 'https://epetitions.aph.gov.au/petitions/all',
+        url: allPetitionsUrl,
         headers: {
             'Accept': 'application/json'
         }
@@ -89,7 +89,7 @@ var getFormatedPetitions = staleCache(cacheTime / 4, function(callback) {
             return {
                 PPetitionerName: petition.PPetitionerName,
                 PetitionNumber: petition.PetitionNumber,
-                PetitionTitle: petition.PetitionTitle,
+                PetitionTitle: petition.PetitionSummary,
                 SignatureCount: petition.SignatureCount,
                 signersPerMinute: petition.signersPerMinute,
                 _lastUpdated: petition._lastUpdated
