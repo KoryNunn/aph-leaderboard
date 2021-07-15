@@ -92,7 +92,8 @@ var getFormatedPetitions = staleCache(cacheTime / 4, function(callback) {
                 PetitionTitle: petition.PetitionSummary,
                 SignatureCount: petition.SignatureCount,
                 signersPerMinute: petition.signersPerMinute,
-                _lastUpdated: petition._lastUpdated
+                _lastUpdated: petition._lastUpdated,
+                SignDeadline: petition.SignDeadline
             };
         })
         .sort((a, b) => b.SignatureCount - a.SignatureCount)
